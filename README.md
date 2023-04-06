@@ -1,2 +1,4 @@
 # Image-Processing
 NCKU EE IMAGE PROCESSING PROJECTS
+
+1 SLIC

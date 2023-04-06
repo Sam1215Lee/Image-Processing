@@ -1,0 +1,123 @@
+clear all
+close all
+clc
+
+Training_Path = 'TrainDatabase';  %Set your directory for training data file
+Testing_Path = 'TestDatabase';    %Set your directory for testing data file
+
+disp('Pick a Testing Photo From TestDatabase please')
+[filename, pathname] = uigetfile({'*.jpg'},'Pick a Testing Photo From TestDatabase please');
+disp('Hold a second for computing')
+TestImage = [pathname, filename];
+im = imread(TestImage);
+
+Training_Data = ReadFace(Training_Path);
+[m, A, Eigenfaces] = EigenfaceCore(Training_Data);
+OutputName = Recognition(TestImage, m, A, Eigenfaces);
+
+SelectedImage = strcat(Training_Path,'\',OutputName);
+SelectedImage = imread(SelectedImage);
+
+Visualize_Eigenface(Eigenfaces,128,128);
+
+figure('name','Recognition Result')
+subplot(1,2,1);
+imshow(im)
+title('Test Image');
+
+subplot(1,2,2);
+imshow(SelectedImage);
+title('Recognition Result');
+disp('Done')
+
+function Training_Data = ReadFace(Training_Path)
+% ---------- Construct 2D matrix from all of the 1D image vectors in the training data file ------------
+flist = dir(strcat(Training_Path,'\*.jpg'));
+Training_Data = [];
+for imidx = 1:length(flist)
+    fprintf('Constructing Training Image Data Space [%d] \n', imidx); 
+    path = strcat(Training_Path,strcat('\',int2str(imidx),'.jpg'));
+    img = imread(path);
+    [irow icol] = size(img);
+    temp = reshape(img',irow*icol,1);   % Reshaping 2D images to 1D image vectors
+    Training_Data = [Training_Data temp];
+end
+fprintf('\n');
+end
+
+function OutputName = Recognition(TestImage, m, A, Eigenfaces)
+%-------------Project the selected test image and all of the training
+%images into Eigenfaces space. Compare the Euclidean distances between them and find the
+%  index of image who gets minmum Euclidean distances.
+ProjectedImages = [];
+Train_Number = size(A,2);
+for i = 1 : Train_Number
+    temp = Eigenfaces' * A(:,i); % Projection of centered images into facespace
+    ProjectedImages = [ProjectedImages temp]; 
+end
+
+%-------------Project the test image you selected into Eigenfaces space-------------
+InputImage = imread(TestImage);
+temp = InputImage(:,:,1);
+
+[irow icol] = size(temp);
+InImage = reshape(temp',irow*icol,1);
+Difference = double(InImage)-m; 
+Projected_TestImage = Eigenfaces'*Difference; % Test image feature vector
+
+%----------------------- Calculate Euclidean distances and find the
+%  index of image of minmum Euclidean distances-------------------- 
+Euc_dist = [];
+for i = 1 : Train_Number
+    q = ProjectedImages(:,i);
+    temp = ( norm( Projected_TestImage - q ) )^2;
+    Euc_dist = [Euc_dist temp];
+end
+
+[Euc_dist_min , Recognized_index] = min(Euc_dist);
+OutputName = strcat(int2str(Recognized_index),'.jpg');
+end
+
+function Visualize_Eigenface(Eigenfaces, imgrow, imgcol)
+%-------------------Show the maxmum nine pictures of Eigenfaces---------------
+    Num_Eigenvalue = size(Eigenfaces,2);
+    figure('Name','Eigenface')
+    img = zeros(imgrow, imgcol);
+    for i=1:min(Num_Eigenvalue,9)
+        img(:) = Eigenfaces(:,i);
+        subplot(3,3,i);
+        imshow(img',[]);
+    end
+end
+
+
+
+function [m, A, Eigenfaces] = EigenfaceCore(Training_Data)
+
+%----------------------------Calculate the mean image ------------------------
+% ---------------------compute the covariance matrix --------------------------
+m = mean(Training_Data,2);
+Train_Number = size(Training_Data,2);
+temp_m = [];  
+for i = 1 : Train_Number
+    temp_m = [temp_m m];
+end
+A = double(Training_Data) - temp_m;
+
+%-------------------use the "svd" function to compute the eigenvectors
+%--------------------and eigenvalues of the covariance matrix.
+disp('Computing...Wait a second please')
+L = A'*A;
+%size(L)
+[V D] = eig(L); 
+
+%-----------------------------Sort and eliminate eigenvalues---------------
+Eig_vec = [];
+for i = 1 : size(V,2) 
+    if( D(i,i)>1000 ) % Set Threshold value whatever you like
+        Eig_vec = [Eig_vec V(:,i)];
+    end
+end
+
+Eigenfaces = A * Eig_vec;
+end

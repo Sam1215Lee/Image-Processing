@@ -21,4 +21,4 @@ Principal Component Anaiysis
    ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Cuprite%20mining%20site.png)
   ### Result (Endmembers = 9)
    #### Muscovite 
-       ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Muscovite.png)
+   ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Muscovite.png)

@@ -20,4 +20,5 @@ Principal Component Anaiysis
   ### Hyperspectral image
    ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Cuprite%20mining%20site.png)
   ### Result (Endmembers = 9)
-   Muscovite ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Muscovite.png)
+   1.Muscovite 
+    ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Muscovite.png)

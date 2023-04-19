@@ -4,7 +4,8 @@ NCKU EE IMAGE PROCESSING PROJECTS
 ## SLIC 
 Simple Linear Iterative Clustering
 - Implement SLIC on a RGB image and discuss the variation between each parameters.
-[https://github.com/Sam1215Lee/Image-Processing/blob/main/SLIC/pexels-simon-berger-1323550.jpg]
+  ### Original RGB image
+  ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/SLIC/pexels-simon-berger-1323550.jpg)
 ## PCA
 Principal Component Anaiysis
 - Implement PCA through randomly generate a 10-by-100 matrix with its rank is 4 and reconsturct/decompress data to vertify this algorithm.

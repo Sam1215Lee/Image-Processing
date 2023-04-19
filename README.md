@@ -13,3 +13,7 @@ Principal Component Anaiysis
 - Face Recognition using PCA.
 
 ## HyperCSI
+
+- An algorithm combining NMF, PCA, SPA and convex optimization to deal with hyperspectral unmixing problem. 
+  ### Pseudocode for HyperCSI
+   ![Alt Text]()

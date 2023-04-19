@@ -17,3 +17,7 @@ Principal Component Anaiysis
 - An algorithm combining NMF, PCA, SPA and convex optimization to deal with hyperspectral unmixing problem. 
   ### Pseudocode for HyperCSI
    ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/PSEUDOCODE.png)
+  ### Hyperspectral image
+  - ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Cuprite%20mining%20site.png)
+  ### Result (Endmembers = 9)
+  - Muscovite ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Muscovite.png)

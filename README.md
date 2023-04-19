@@ -20,9 +20,9 @@ Principal Component Anaiysis
   ### Hyperspectral image
    ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Cuprite%20mining%20site.png)
   ### Result (Endmembers = 9)
-   #### 1. Muscovite                                                                                   #### 2. Alunite 
-   ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Alunite.png)
+   #### 1. Muscovite          2. Alunite         
    ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Muscovite.png)
+   ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Alunite.png)
    #### 2. Alunite 
    ![Alt Text](https://github.com/Sam1215Lee/Image-Processing/blob/main/HtperCSI/result/Alunite.png)
    #### 3. Desert Varnish 
